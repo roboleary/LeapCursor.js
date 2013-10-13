@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>LeapCursor.js Demo</title>
+	
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+		<script src="./lib/leaptrainer.min.js"></script>
+		<script src="./leapcursor-with-dependencies.min.js"></script>
+
+		<style>
+			
+			p { font-family: Calibri; font-size: 13px; width: 600px; margin: 0 auto; padding-top: 20px; text-align: justify; }
+			
+			p.title { font-size: 30px; font-weight: bold; }
+		
+		</style>
+	</head>
+
+	<body></body>
+	
+	<script>
+	
+		var paragraph;
+
+		for (var i = 0; i < 50; i++) {
+			
+			paragraph = document.createElement('p');
+
+			if (i == 0) {
+				
+				paragraph.innerHTML = 'LeapCursor.js Demo';
+				paragraph.className = 'title';
+				
+			} else {
+				
+				paragraph.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+			}
+		
+			document.body.appendChild(paragraph);
+		}
+	
+		function initTrainer () {
+
+			leapCursor.trainer.fromJSON('{"name":"LEFT","data":[[{"x":-0.13925252236900995,"y":-0.1156044030354974,"z":0.12671155293884587,"stroke":1},{"x":-0.2198184453643537,"y":0.05544867345575791,"z":-0.0553514377907301,"stroke":1},{"x":-0.09059543821879679,"y":0.020827731853527515,"z":-0.09887225305500846,"stroke":1},{"x":-0.24422234730597137,"y":0.04326566190235051,"z":-0.07085221473350883,"stroke":1},{"x":-0.3345126605829994,"y":-0.1151423060336168,"z":0.04624277356236939,"stroke":1},{"x":-0.1273638556410062,"y":-0.11445469952829643,"z":0.12167264690770427,"stroke":1},{"x":-0.1977911746105282,"y":0.044656535484565885,"z":-0.04126229554161632,"stroke":1},{"x":-0.08673571971580923,"y":0.03325790803728776,"z":-0.09726587288845519,"stroke":1},{"x":-0.2138859824938243,"y":0.04395675966046245,"z":-0.06522227909080977,"stroke":1},{"x":-0.31292516920818136,"y":-0.13623383632076733,"z":0.059073384089483316,"stroke":1},{"x":-0.08017907044744221,"y":-0.1034148702700641,"z":0.12128707543429476,"stroke":1},{"x":-0.1729142001663016,"y":0.06646298632208855,"z":-0.056022442286257655,"stroke":1},{"x":-0.019973850123616688,"y":0.015965500385466347,"z":-0.07911390231606019,"stroke":1},{"x":-0.20491441438813673,"y":0.03716006047106574,"z":-0.04602419781925841,"stroke":1},{"x":-0.2379046144287931,"y":-0.13017896412324156,"z":0.07202993239051911,"stroke":1},{"x":-0.06505285365521973,"y":-0.05968402870363852,"z":0.08212077561984141,"stroke":1},{"x":-0.13704347691211957,"y":0.111192452648009,"z":-0.089656745739258,"stroke":1},{"x":-0.005019365462157421,"y":0.02501633429896641,"z":-0.06393263784090951,"stroke":1},{"x":-0.19964630715402204,"y":-0.0052928045375460475,"z":-0.015027446409780695,"stroke":1},{"x":-0.13596006949628767,"y":-0.11172972718874356,"z":0.08884343904470979,"stroke":1},{"x":-0.04986739479356739,"y":-0.00219435621557576,"z":0.03383017127135335,"stroke":1},{"x":-0.021707510655881668,"y":0.09764457886703162,"z":-0.08102339155874537,"stroke":1},{"x":-0.008640218973077984,"y":0.04208545763896651,"z":-0.058408707896256615,"stroke":1},{"x":-0.053559420082139375,"y":-0.04354116629939407,"z":-0.00474021467704866,"stroke":1},{"x":-0.13682357326006797,"y":-0.10576223546871281,"z":0.07804015334584471,"stroke":1},{"x":-0.0055930191376154514,"y":-0.02005709107116717,"z":0.05657428930876571,"stroke":1},{"x":-0.0060761065332086694,"y":0.11799036082110839,"z":-0.07853780456458015,"stroke":1},{"x":-0.02995458264304207,"y":0.0657357290128388,"z":-0.05559886142563971,"stroke":1},{"x":0.041118930024996225,"y":-0.014047808060628622,"z":-0.022254455706877535,"stroke":1},{"x":-0.16027885373451078,"y":-0.09570169307334095,"z":0.0578233600588641,"stroke":1},{"x":0.08263061854425235,"y":-0.08262928147405399,"z":0.11757258223989606,"stroke":1},{"x":0.060838891576537546,"y":0.11562257580578658,"z":-0.05306820198084893,"stroke":1},{"x":0.021932033366823256,"y":0.10617683320406804,"z":-0.05859985103149047,"stroke":1},{"x":0.19149245298662027,"y":0.023942768811588716,"z":-0.04240782581433735,"stroke":1},{"x":-0.0032842335059070638,"y":-0.04305931510793977,"z":0.019479927074704306,"stroke":1},{"x":0.04307843767444436,"y":-0.08294133802963238,"z":0.09819228500925484,"stroke":1},{"x":0.13179147178447026,"y":0.0442379172713436,"z":0.01288867886817438,"stroke":1},{"x":0.20291164067095563,"y":0.09950014260906631,"z":-0.06096766492787465,"stroke":1},{"x":0.14440873664709813,"y":0.07251911868915761,"z":-0.04575502728097983,"stroke":1},{"x":0.18395197488808085,"y":-0.010334346625990004,"z":-0.009571270481225275,"stroke":1},{"x":-0.038838079018377936,"y":-0.05398847600396932,"z":0.04772579458974058,"stroke":1},{"x":0.1708505249272922,"y":-0.060100395360704134,"z":0.10298327024866644,"stroke":1},{"x":0.2131753652042781,"y":0.13917816242498068,"z":-0.06252691016630874,"stroke":1},{"x":0.1652606426682391,"y":0.11579753110366744,"z":-0.053395433337454605,"stroke":1},{"x":0.3233776739977399,"y":0.017294725369813635,"z":-0.025525955227134897,"stroke":1},{"x":0.13840418610399874,"y":-0.022598364200428267,"z":0.01394085258932834,"stroke":1},{"x":0.09627484394905317,"y":-0.06396952794081343,"z":0.08361731948957488,"stroke":1},{"x":0.2401958427625775,"y":0.0125731918568186,"z":0.045544158694515696,"stroke":1},{"x":0.21154947351691228,"y":0.12590594138884156,"z":-0.0508875996527185,"stroke":1},{"x":0.4116034493706046,"y":0.013102828997298727,"z":-0.017193158696556285,"stroke":1},{"x":0.6654873394170007,"y":-0.11385743371816497,"z":0.07287163716127906,"stroke":1}]]}');
+
+			leapCursor.trainer.on('LEFT', function() { window.scrollTo(0, 0); });
+		}
+	
+		if (window.addEventListener) { window.addEventListener('load', function() { initTrainer(); }, false); 
+	
+		} else if (elem.attachEvent) { window.attachEvent("onLoad", function() { initTrainer(); }); }
+	
+	</script>
+</html>
