@@ -21,7 +21,7 @@ Below is [a video of the library in action](http://youtu.be/trZy-A8Y1-k).  An on
 * [Usage](#usage)
 * [Options](#options)
 * [LeapTrainer.js integration](#leaptrainer-integration)
-* [Alternatives](#but-it-doesnt-recognize-my-gang-sign--secret-handshake--full-double-rimmer-salute)
+* [Alternatives](#alternatives)
 * [Thanks](#thanks)
 * [Author](#author)
 * [Version](#version)
@@ -118,7 +118,7 @@ Also, when motion support is implemented on the web-side, applications can conne
 
 ## Thanks
 
-As with LeapTrainer, the original code used to render a 3D hand on screen was based on code from jestPlay, by Theo Armour, [which you can find right here](http://jaanga.github.io/gestification/cookbook/jest-play/r1/jest-play.html).  Thanks Theo!
+As with LeapTrainer, the original code used to render a 3D hand on screen was based on code from jestPlay, by Theo Armour, [which you can find right here](http://jaanga.github.io/gestification/).  Thanks Theo!
 
 ## Author
 
