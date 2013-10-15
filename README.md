@@ -17,7 +17,7 @@ Default interactions are scrolling around the page, generating *mouseenter* and 
 
 Mouse enter and leave events are generated when the cursor moves over a page element. Clicks are generated when the user makes a tapping motion.
 
-New gestures can be added to LeapCursor using [LeapTrainer.js](https://github.com/roboleary/LeapTrainer.js), which is included as a dependency of the library, [as described below](#leaptrainer-integration).
+New gestures can be added to LeapCursor using [LeapTrainer.js](https://github.com/roboleary/LeapTrainer.js), which is included as a dependency of the library, [as described below](#adding-new-gestures).
 
 Below is [a video of v0.2 of the library in action](http://youtu.be/urjzNBUYC8Q).  The original [v0.1 video can be found right here](http://youtu.be/trZy-A8Y1-k). 
 
@@ -153,7 +153,7 @@ Contact: robertjoleary AT gmail DOT com
 
 ## Version
 
-0.1
+0.2
 
 ## License
 
