@@ -10,6 +10,7 @@ LeapCursor.prototype = {
 	trainer				: null,
 	trainerEnabled		: false,
 	evtController		: null,
+	highlightedElm		: null,
 	
 	target				: window,
 	
@@ -64,7 +65,7 @@ LeapCursor.prototype = {
 		} else {
 
 			this.trainerEnabled 	= typeof LeapTrainer == 'object';
-			this.controller			= this.trainerEnabled ? new LeapTrainer.Controller() : new Leap.Controller();			
+			this.controller			= this.trainerEnabled ? new LeapTrainer.Controller({pauseOnWindowBlur: false}) : new Leap.Controller();			
 		}
 
 		this.evtController = (this.trainerEnabled ? this.controller.controller : this.controller);
@@ -74,7 +75,17 @@ LeapCursor.prototype = {
 		 */
 		this.evtController.on('connect', function() { this.createCursor(options); }.bind(this));
 
-		if (!this.trainerEnabled) { this.controller.connect(); } else { this.trainer = this.controller; }		
+		if (!this.trainerEnabled) { this.controller.connect(); } else { this.trainer = this.controller; this.initDefaultGestures(); }		
+	},
+	
+	/**
+	 * 
+	 */
+	initDefaultGestures: function() {
+
+		this.trainer.fromJSON('{"name":"TAP","data":[[{"x":0.03185018841689369,"y":-0.2955364919879749,"z":0.30395151229974915,"stroke":1},{"x":0.007577409512100508,"y":-0.143194645412326,"z":0.19583884160435477,"stroke":1},{"x":-0.01669536939269267,"y":0.009147201163322904,"z":0.08772617090896045,"stroke":1},{"x":-0.04096814829748574,"y":0.16148904773897182,"z":-0.020386499786433865,"stroke":1},{"x":-0.06524092720227892,"y":0.31383089431462075,"z":-0.12849917048182818,"stroke":1},{"x":0.07782081571377697,"y":0.22476552136320582,"z":-0.1333397144261559,"stroke":1},{"x":0.23307373058642433,"y":0.11811240326038724,"z":-0.13065635809070106,"stroke":1},{"x":0.3883266454590718,"y":0.011459285157568666,"z":-0.1279730017552462,"stroke":1},{"x":0.4352681776798024,"y":-0.0009652123270492141,"z":-0.12706884891425413,"stroke":1},{"x":0.3081486887178203,"y":0.13803971088137734,"z":-0.12902395213255644,"stroke":1},{"x":0.17468263510031368,"y":0.17148676740131702,"z":-0.10384411619161024,"stroke":1},{"x":0.03273981198368481,"y":0.06394578498928477,"z":-0.04242158249047845,"stroke":1},{"x":-0.10920301113294412,"y":-0.04359519742274748,"z":0.019000951210653316,"stroke":1},{"x":-0.25114583424957293,"y":-0.15113617983477973,"z":0.08042348491178514,"stroke":1},{"x":-0.39308865736620174,"y":-0.2586771622468122,"z":0.1418460186129169,"stroke":1},{"x":-0.3676876892078774,"y":-0.2980322196198223,"z":0.18794861619097114,"stroke":1},{"x":-0.1837044150586537,"y":-0.2727713079961436,"z":0.2195333713111643,"stroke":1},{"x":0.0002788590905699051,"y":-0.24751039637246458,"z":0.25111812643135767,"stroke":1},{"x":-0.010260994114239419,"y":-0.09918735642352758,"z":0.15251566678561213,"stroke":1},{"x":-0.030960057779212846,"y":0.05556275509441916,"z":0.0471140191357452,"stroke":1},{"x":-0.05165912144418616,"y":0.21031286661236592,"z":-0.0582876285141217,"stroke":1},{"x":-0.025351960830330755,"y":0.2967565986430546,"z":-0.13573927637868743,"stroke":1},{"x":0.13185969510169626,"y":0.1929784553588551,"z":-0.1353548361044802,"stroke":1},{"x":0.28907135103372306,"y":0.08920031207465556,"z":-0.13497039583027298,"stroke":1},{"x":-0.5647318223201976,"y":-0.24648143440976086,"z":-0.2794513983064423,"stroke":1}]]}');
+
+		this.trainer.on('TAP', function() { this.fire('click'); }.bind(this));
 	},
 
 	/**
@@ -208,7 +219,7 @@ LeapCursor.prototype = {
 		/*
 		 * In order to avoid as much variable creation as possible during animation, variables are created here once.
 		 */
-		var hand, palm, handFingers, handFingerCount, finger, handCount, palmCount = this.palms.length;	
+		var hand, palm, handFingers, handFingerCount, finger, handCount, elm;/*palmCount = this.palms.length*/;	
 
 		/*
 		 * Now we set up a Leap controller frame listener in order to animate the scene
@@ -220,20 +231,44 @@ LeapCursor.prototype = {
 		this.evtController.on('frame', function(frame) {
 
 			if (clock.previousTime === 1000000) {
-				
+
 				this.scroll(frame);
 
 				handCount = frame.hands.length;
 				
 				if (handCount > 0) {
 
+					/*
+					 * First we find the location of the actual hand
+					 */
 					hand = frame.hands[0];
 
 					var top		= (-hand.stabilizedPalmPosition[1] * 3) + (window.innerHeight);
 					var left	= (hand.stabilizedPalmPosition[0] * 3) + (window.innerWidth/2);
 
+					/*
+					 * Then we move the virtual hand to that position
+					 */					
 					this.canvas.style.top = top + 'px';
 					this.canvas.style.left = left + 'px';
+
+					/*
+					 * Then we highlight the element at that location on the page
+					 */
+					this.canvas.style.display = 'none';
+					
+					elm = document.elementFromPoint(left, top + 20);
+					
+					this.canvas.style.display = 'block';
+
+					if (elm != this.highlightedElm) {
+						
+						this.fire('mouseleave');
+						
+						this.highlightedElm = elm;
+						
+						this.fire('mouseenter');
+					}
 
 				} else {
 					
@@ -518,6 +553,37 @@ LeapCursor.prototype = {
 
 			target.scrollTo(left + this.speed[0], top - this.speed[1]);
 		}
+	},
+
+	fire: function(evt) {
+
+		var elm = this.highlightedElm;
+		
+		if (!elm) { return; }
+		
+		var event;
+		
+		if (document.createEvent) {
+
+			event = document.createEvent("HTMLEvents");
+		    event.initEvent(evt, true, true);
+		
+		} else {
+
+			event = document.createEventObject();
+		    event.eventType = evt;
+		}
+
+		event.eventName = evt;
+
+		if (document.createEvent) {
+
+			elm.dispatchEvent(event);
+
+		} else {
+
+			elm.fireEvent('on' + event.eventType, event);
+		}		
 	}
 };
 

@@ -1,6 +1,9 @@
-# LeapCursor.js v0.1
+# LeapCursor.js v0.2
 
 This library provides Leap Motion support for websites with just a single line of code.  
+
+**v0.2 release: Now supports mouseenter, mouuseleave, and click events out of the box**.  
+
 
 When users with a Leap Motion load a page that includes LeapCursor.js they're presented with a hand in the corner of the screen.  
 
@@ -10,18 +13,25 @@ When users with a Leap Motion load a page that includes LeapCursor.js they're pr
 
 When the user moves a hand over the Leap, the hand on screen moves to follow, matching position, rotation and finger movement, and allowing the user to interact with the page.  
 
-Currently basic interation is limited to scrolling around - the next step will be to provide the ability to click on elements.  However, [LeapTrainer.js](https://github.com/roboleary/LeapTrainer.js) can already be used in combination with LeapCursor to provide input via gesture recognition, [as described below](#leaptrainer-integration).
+Default interactions are scrolling around the page, generating *mouseenter* and *mouseleave* events, and generating *click* events. 
 
-Below is [a video of the library in action](http://youtu.be/trZy-A8Y1-k).  An online demo [can be found right here](https://rawgithub.com/roboleary/LeapCursor.js/master/demo.html).
+Mouse enter and leave events are generated when the cursor moves over a page element. Clicks are generated when the user makes a tapping motion.
 
-[![ScreenShot](./resources/video-splash.png)](http://youtu.be/trZy-A8Y1-k)
+New gestures can be added to LeapCursor using [LeapTrainer.js](https://github.com/roboleary/LeapTrainer.js), which is included as a dependency of the library, [as described below](#leaptrainer-integration).
+
+Below is [a video of v0.2 of the library in action](http://youtu.be/urjzNBUYC8Q).  The original [v0.1 video can be found right here](http://youtu.be/trZy-A8Y1-k). 
+
+An online demo [can be found right here](https://rawgithub.com/roboleary/LeapCursor.js/master/demo.html).
+
+[![ScreenShot](./resources/video-splash.png)](http://youtu.be/urjzNBUYC8Q)
 
 ## Table of contents
 
 * [Usage](#usage)
 * [Options](#options)
-* [LeapTrainer.js integration](#leaptrainer-integration)
+* [Adding new gestures](#adding-new-gestures)
 * [Alternatives](#alternatives)
+* [Release Notes](#release-notes)
 * [Thanks](#thanks)
 * [Author](#author)
 * [Version](#version)
@@ -36,15 +46,22 @@ The easiest way to use LeapCursor is to just include it in your page:
 
 The hand will now appear for Leap users when the page loads, and the window will scroll as the hand moves.
 
-The above script includes the library dependencies - which are:
+To detect when the cursor fires an event associated with a page element, normal event listeners can be used.  For example, using jQuery:
+
+	$(elm).click(function() { alert('Leap cursor click!'); });
+
+
+The above include bundles the library dependencies - which are:
 
 * [Leap.js](http://js.leapmotion.com/)
+* [LeapTrainer.js](https://github.com/roboleary/LeapTrainer.js)
 * [Three.js](http://threejs.org/)
 * [Detector.js](https://github.com/mrdoob/three.js/blob/master/examples/js/Detector.js)
 
 If you don't want these bundled inside LeapCursor you can include them separately:
 
 	<script src="/path/to/leap.min.js"></script>
+	<script src="/path/to/leaptrainer.min.js"></script>
 	<script src="/path/to/three.min.js"></script>
 	<script src="/path/to/detector.min.js"></script>
 	<script src="/path/to/leapcursor.min.js"></script>
@@ -78,19 +95,15 @@ The following options are available.
  
 * **dampening**: How quickly the scroll will slow down and stop when the hand moves out of sight (default: 0.95)
 
-* **gestureColor**: The color the hand is set to when [LeapTrainer.js](https://github.com/roboleary/LeapTrainer.js) is being used and gesture recording is active (default: #88CFEB)
+* **gestureColor**: The color the hand is set to when a gesture is being recorded(default: #88CFEB)
 
 
 
-## LeapTrainer integration
+## Adding new gestures
 
-The [LeapTrainer.js](https://github.com/roboleary/LeapTrainer.js) library is a  gesture recording and recognition framework for the Leap.  Gestures can be recorded using the LeapTrainer UI and then included in other applications.  LeapTrainer gestures can be used with LeapCursor in order to provide more interactivity than just basic scrolling.
+[LeapTrainer.js](https://github.com/roboleary/LeapTrainer.js) is a  gesture recording and recognition framework for the Leap, and is included by default in LeapCursor (*it's used to recognize click motions*).  
 
-To add LeapTrainer gesture support, just include it in the page:
-
-	<script src="/path/to/leaptrainer.min.js"></script>
-
-When LeapCursor initializes it will detect LeapTrainer and automagically upgrade itself for gesture support. 
+Gestures can be recorded using the LeapTrainer UI and then included in other applications.  LeapTrainer gestures can be used with LeapCursor in order to provide new kinds of interactivity with the cursor.
 
 During initialization LeapCursor creates an instance of itself in the window scope called *leapCursor* - this instance can be used to access the LeapTrainer controller for loading gestures and receiving callbacks.  For example:
 
@@ -115,6 +128,18 @@ If website and web application developers design how motion and gesture interati
 
 Also, when motion support is implemented on the web-side, applications can connect specific features of their web applications to their choice of movements and gestures - which helps open up the endless possibilities for expressiveness in motion input.
 
+##Release Notes
+
+**v0.2**
+
+* [LeapTrainer.js](https://github.com/roboleary/LeapTrainer.js) now included by default
+* Added click, mouseenter and mouseleave events
+
+**v0.1**
+
+* Window scroll support
+* Cursor rendering
+* Options parsing
 
 ## Thanks
 
