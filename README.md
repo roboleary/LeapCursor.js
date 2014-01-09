@@ -1,4 +1,4 @@
-# LeapCursor.js v0.2
+# LeapCursor.js v0.21
 
 This library provides Leap Motion support for websites with just a single line of code.  
 
@@ -129,6 +129,10 @@ If website and web application developers design how motion and gesture interati
 Also, when motion support is implemented on the web-side, applications can connect specific features of their web applications to their choice of movements and gestures - which helps open up the endless possibilities for expressiveness in motion input.
 
 ##Release Notes
+
+**v0.21**
+
+* Corrected support for jQuery event binding
 
 **v0.2**
 

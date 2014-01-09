@@ -575,6 +575,8 @@ LeapCursor.prototype = {
 		}
 
 		event.eventName = evt;
+		
+		if (event.initEvent) { event.initEvent(event.type, true, true); }
 
 		if (document.createEvent) {
 
