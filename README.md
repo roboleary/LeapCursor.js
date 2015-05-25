@@ -21,7 +21,7 @@ New gestures can be added to LeapCursor using [LeapTrainer.js](https://github.co
 
 Below is [a video of v0.2 of the library in action](http://youtu.be/urjzNBUYC8Q).  The original [v0.1 video can be found right here](http://youtu.be/trZy-A8Y1-k). 
 
-An online demo [can be found right here](https://rawgithub.com/roboleary/LeapCursor.js/master/demo.html).
+An online demo [can be found right here](http://rawgithub.com/roboleary/LeapCursor.js/master/demo.html).
 
 [![ScreenShot](./resources/video-splash.png)](http://youtu.be/urjzNBUYC8Q)
 
